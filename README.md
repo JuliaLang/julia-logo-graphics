@@ -14,4 +14,8 @@ This folder contains copies of the logos for the Julia programming language. The
 - transparent background (for PNG files)
 - thick strokes converted to filled objects with no stroke width
 
-For procedural drawing of the Julia logo, see [Luxor](https://github.com/cormullion/Luxor/).
+For procedural drawing of the Julia logo —
+
+![](images/julia-logo-mask.png)
+
+— see [Luxor](https://github.com/cormullion/Luxor/).
