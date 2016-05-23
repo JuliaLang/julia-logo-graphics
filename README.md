@@ -26,3 +26,9 @@ For procedural drawing of the Julia logo —
 
 The font used for the logo's original design is generally known as MN Latin. MN is Muthu Nedumaran, of [Murasu Systems](http://murasu.com). Muthu Nedumaran developed several Indic fonts which are currently bundled with Mac OS X: Bangla MN, Gurmukhi MN, Kannada MN, Khmer MN, Lao MN, Malayalam MN, Myanmar MN, Oriya MN, Sinhala MN, Tamil MN, and Telugu MN.
 The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive "serifless Times Roman" style.
+
+###Julia-tan###
+
+“Julia-tan” is the #JuliaLang (unofficial) anime character, licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+Contact Takeshi KIMURA (twitter: @kimrin) for any details of commercial usage.
