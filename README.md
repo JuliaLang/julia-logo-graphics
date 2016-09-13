@@ -4,7 +4,7 @@ _This is not an "official" Julia project..._ ;)
 
 ![Julia logo](images/julia-logo-325-by-225.png)
 
-This folder contains copies of the logos for the Julia programming language. They are just "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
+This project contains copies of the logos for the Julia programming language. They are just "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
 
 ![](images/group-shot.png)
 
@@ -16,11 +16,9 @@ This folder contains copies of the logos for the Julia programming language. The
 - transparent background (for PNG files)
 - thick strokes converted to filled objects with no stroke width
 
-For procedural drawing of the Julia logo —
+For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
-
-— see [Luxor](https://github.com/cormullion/Luxor/).
 
 ###About the font###
 
