@@ -1,7 +1,7 @@
 # the current julia logo
 
 """
-Draw the logo:
+Draw the logo in color:
 
     julialogo(colored=true, masking=false)
 
@@ -14,11 +14,12 @@ Typical usage:
 ```
 using Luxor, Colors
 # find this file, eg:
-include("~/.julia/v0.5/Luxor/test/julia-logo.jl"))
-Drawing(1000, 1000, "/tmp/heart-julia.pdf")
+include("julia-logo.jl")
+Drawing(1000, 1000, "/tmp/julia-logo.pdf")
 origin()
-background("white")
-julialogo()
+background("ivory")
+sethue("red")
+julialogo(false) # all red
 finish()
 preview()
 ```
