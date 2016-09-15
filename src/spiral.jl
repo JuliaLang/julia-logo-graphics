@@ -9,19 +9,19 @@ end
 function draw_spiral(p, colscheme)
   gsave()
   translate(p)
-  setopacity(0.8)
+  setopacity(0.9)
   setline(2)
   sethue("red")
   γ = 2pi * (1 - 1/golden)
   k = 30
-  circleradius = 25
-  for i in 1:300
+  circleradius = 30
+  for i in 1:2:200
     pos = polar(sqrt(i), i * γ, k)
     for n in 1:2:25
       sethue(colorscheme(colscheme, n/25))
       circle(pos, circleradius - n, :fill)
     end
-    circleradius -= 0.1
+    circleradius -= .2
   end
   grestore()
 end

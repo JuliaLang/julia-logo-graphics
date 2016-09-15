@@ -23,6 +23,7 @@ function julia_balls()
   grestore()
 end
 
+# no background -> transparent png!
 Drawing(500, 500, "/tmp/juliaballs.png")
 origin()
 julia_balls()
