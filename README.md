@@ -20,9 +20,16 @@ For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
 
+###Color definitions###
+
+![](images/julia-colors.png)
+
 ###About the font###
 
+![](images/fontsample.png)
+
 The font used for the logo's original design is generally known as MN Latin. MN is Muthu Nedumaran, of [Murasu Systems](http://murasu.com). Muthu Nedumaran developed several Indic fonts which are currently bundled with Mac OS X: Bangla MN, Gurmukhi MN, Kannada MN, Khmer MN, Lao MN, Malayalam MN, Myanmar MN, Oriya MN, Sinhala MN, Tamil MN, and Telugu MN.
+
 The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive "serifless Times Roman" style.
 
 ###Julia-tan###
