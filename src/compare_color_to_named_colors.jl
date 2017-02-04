@@ -45,42 +45,66 @@ end
 
 using Luxor
 
-Drawing("A4", "/tmp/julia-colors.png")
+Drawing(800, 1000, "/tmp/julia-colors-new.png")
 background("white")
-origin()
-fontsize(20)
+fontsize(24)
 sethue("black")
-text("Julia logo colors and nearest named equivalents", 0, -paper_sizes["A4"][2]/2 + 30, halign=:center)
+text("Julia logo colors and nearest named equivalents", 400, 40, halign=:center)
 fontsize(12)
-tiles = Tiler(currentdrawing.width, currentdrawing.height, 4, 2, margin=30)
 nearestlist = findnearestcolors()
-for (pos, n) in tiles
-    thiscolor = nearestlist[n]
-    originalcolor = thiscolor[1]
-    originalcolorname = thiscolor[2]
-    nearestcolorname = thiscolor[3]
-    distance = thiscolor[4]
-    nearestRGB = thiscolor[5]
-    
-    n % 2 == 1 ? diskradius = 80 : diskradius = 60
-    # original color
-    setcolor(originalcolor...)
-    ellipse(Point(pos.x-40, pos.y-40), diskradius, diskradius, :fill)    
-    # replacement color
-    setcolor(nearestRGB)
-    ellipse(Point(pos.x+40, pos.y+40), diskradius, diskradius, :fill)
-    gsave()
-    translate(Point(pos.x-120, pos.y-60))
+
+boldhelvetica(string, position) = begin
     setcolor("black")
-    translate(0, tiles.tileheight/2)    
     fontsize(12)
     fontface("Helvetica-Bold")
-    text(originalcolorname, Point(O.x, 0))
-    text(nearestcolorname, Point(O.x, 30))
+    text(string, position)
+    end
+
+regularhelvetica(string, position) = begin
+    setcolor("black")
+    fontsize(10)
     fontface("Helvetica")
-    fontsize(11)
-    text(string(originalcolor), Point(O.x, 10))
-    text(string(nearestRGB), Point(O.x, 40))
+    text(string, position)
+    end
+
+translate(100, 150)
+grid = setgrid(400, 200, 400)
+
+for n in nearestlist
+    originalcolor = n[1]
+    originalcolorname = n[2]
+    nearestcolorname = n[3]
+    distance = n[4]
+    nearestRGB = n[5]
+    p = grid()
+    # original color
+    setcolor(originalcolor...)
+    diskradius = 120
+    ellipse(p, diskradius, diskradius, :fill)    
+    # label
+    gsave()
+        translate(100, -20)
+        list1 = setgrid(500, 20, 0)
+        boldhelvetica(originalcolorname, p + list1())
+        regularhelvetica(string(originalcolor), p + list1())
+    grestore()
+
+    # replacement color
+    gsave()
+        translate(50, 50)
+        sethue("white")
+        diskradius = 90
+        ellipse(p, diskradius, diskradius, :fill)
+        diskradius = 80
+        setcolor(nearestRGB)
+        ellipse(p, diskradius, diskradius, :fill)
+        # label
+        gsave()
+            translate(100, -20)
+            list1 = setgrid(500, 20, 0)
+            boldhelvetica(nearestcolorname, p + list1())
+            regularhelvetica(string(nearestRGB), p + list1())
+        grestore()
     grestore()
 end
 
