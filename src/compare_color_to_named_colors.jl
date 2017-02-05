@@ -68,7 +68,7 @@ regularhelvetica(string, position) = begin
     end
 
 translate(100, 150)
-grid = setgrid(400, 200, 400)
+grid = Grid(O, 400, 200, 800, 800) 
 
 for n in nearestlist
     originalcolor = n[1]
@@ -76,7 +76,7 @@ for n in nearestlist
     nearestcolorname = n[3]
     distance = n[4]
     nearestRGB = n[5]
-    p = grid()
+    p = gp(grid)
     # original color
     setcolor(originalcolor...)
     diskradius = 120
@@ -84,9 +84,9 @@ for n in nearestlist
     # label
     gsave()
         translate(100, -20)
-        list1 = setgrid(500, 20, 0)
-        boldhelvetica(originalcolorname, p + list1())
-        regularhelvetica(string(originalcolor), p + list1())
+        list1 = Grid(O, 0, 20, 0)
+        boldhelvetica(originalcolorname, p + gp(list1))
+        regularhelvetica(string(originalcolor), p + gp(list1))
     grestore()
 
     # replacement color
@@ -101,9 +101,9 @@ for n in nearestlist
         # label
         gsave()
             translate(100, -20)
-            list1 = setgrid(500, 20, 0)
-            boldhelvetica(nearestcolorname, p + list1())
-            regularhelvetica(string(nearestRGB), p + list1())
+            list1 = Grid(O, 0, 20, 0)
+            boldhelvetica(nearestcolorname, p + gp(list1))
+            regularhelvetica(string(nearestRGB), p + gp(list1))
         grestore()
     grestore()
 end
