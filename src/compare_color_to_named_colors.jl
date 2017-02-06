@@ -53,17 +53,17 @@ text("Julia logo colors and nearest named equivalents", 400, 40, halign=:center)
 fontsize(12)
 nearestlist = findnearestcolors()
 
-boldhelvetica(string, position) = begin
+boldtext(string, position) = begin
     setcolor("black")
     fontsize(12)
     fontface("Helvetica-Bold")
     text(string, position)
     end
 
-regularhelvetica(string, position) = begin
+regulartext(string, position) = begin
     setcolor("black")
     fontsize(10)
-    fontface("Helvetica")
+    fontface("Menlo")
     text(string, position)
     end
 
@@ -76,7 +76,7 @@ for n in nearestlist
     nearestcolorname = n[3]
     distance = n[4]
     nearestRGB = n[5]
-    p = gp(grid)
+    p = nextgridpoint(grid)
     # original color
     setcolor(originalcolor...)
     diskradius = 120
@@ -85,8 +85,8 @@ for n in nearestlist
     gsave()
         translate(100, -20)
         list1 = Grid(O, 0, 20, 0)
-        boldhelvetica(originalcolorname, p + gp(list1))
-        regularhelvetica(string(originalcolor), p + gp(list1))
+        boldtext(originalcolorname, p + nextgridpoint(list1))
+        regulartext(string(originalcolor), p + nextgridpoint(list1))
     grestore()
 
     # replacement color
@@ -100,10 +100,10 @@ for n in nearestlist
         ellipse(p, diskradius, diskradius, :fill)
         # label
         gsave()
-            translate(100, -20)
+            translate(50, -20)
             list1 = Grid(O, 0, 20, 0)
-            boldhelvetica(nearestcolorname, p + gp(list1))
-            regularhelvetica(string(nearestRGB), p + gp(list1))
+            boldtext(nearestcolorname, p + nextgridpoint(list1))
+            regulartext(string(nearestRGB), p + nextgridpoint(list1))
         grestore()
     grestore()
 end
