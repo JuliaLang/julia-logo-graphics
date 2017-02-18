@@ -87,7 +87,7 @@ sethue("black")
 text("Julia logo colors and nearest named equivalents", 400, 40, halign=:center)
 fontsize(12)
 translate(100, 150)
-grid = GridRect(O, 400, 200, 800, 800) 
+grid = GridRect(O, 400, 200, 600) 
 
 nearestlist = findnearestcolors(namedcolnames, namedcolvalues)
 
