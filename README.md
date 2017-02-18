@@ -1,10 +1,8 @@
 ## Julia logo graphics
 
-_This is not an "official" Julia project..._ ;)
-
 ![Julia logo](images/julia-logo-325-by-225.png)
 
-This project contains copies of the logos for the Julia programming language. They are just "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
+This project contains copies of the logos for the Julia programming language. They are "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
 
 ![](images/group-shot.png)
 
@@ -20,11 +18,11 @@ For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
 
-###Color definitions###
+###Color definitions
 
 ![](images/julia-colors.png)
 
-###About the font###
+###About the font
 
 ![](images/fontsample.png)
 
@@ -32,7 +30,7 @@ The font used for the logo's original design is generally known as MN Latin. MN 
 
 The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive "serifless Times Roman" style.
 
-###Julia-tan###
+###Julia-tan
 
 “Julia-tan” is the #JuliaLang (unofficial) anime character, licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
