@@ -8,6 +8,9 @@ More exact matches can be found if you use NamedColors.jl.
 
 =#
 
+# Use either the basic colors in Colors.jl or the big collection in NamedColors.jl 
+USE_NAMED_COLORS = true
+
 using Colors, FixedPointNumbers, NamedColors, Luxor
 
 function compare_colors(color_a, color_b)
@@ -54,8 +57,6 @@ const lighter_red      = (0.835, 0.388, 0.361)
 const juliacolors      = [darker_blue, lighter_blue, darker_purple, lighter_purple, darker_green, lighter_green, darker_red, lighter_red]
 const juliacolornames  = ["darker_blue", "lighter_blue", "darker_purple", "lighter_purple", "darker_green", "lighter_green", "darker_red", "lighter_red"]
 
-# Use either the basic colors in Colors.jl or the big collection in NamedColors.jl 
-USE_NAMED_COLORS = false
 if USE_NAMED_COLORS 
     # standard color lists
     const namedcolnames  = collect(collect(keys(ALL_COLORS)))
