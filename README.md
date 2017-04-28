@@ -18,11 +18,11 @@ For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
 
-###Color definitions
+### Color definitions
 
 ![](images/julia-colors.png)
 
-###About the font
+### About the font
 
 ![](images/fontsample.png)
 
@@ -30,7 +30,7 @@ The font used for the logo's original design is generally known as MN Latin. MN 
 
 The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive "serifless Times Roman" style.
 
-###Julia-tan
+### Julia-tan
 
 “Julia-tan” is the #JuliaLang (unofficial) anime character, licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
