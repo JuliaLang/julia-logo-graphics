@@ -2,7 +2,7 @@
 
 ![Julia logo](images/julia-logo-325-by-225.png)
 
-This project contains copies of the logos for the Julia programming language. They are "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
+This project (it's not a Julia package, just a Git repository) contains copies of the logos for the Julia programming language. They are "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
 
 ![](images/group-shot.png)
 
@@ -17,6 +17,8 @@ This project contains copies of the logos for the Julia programming language. Th
 For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
+
+An animated logo is at `images/animated-logo.gif`.
 
 ### Color definitions
 
