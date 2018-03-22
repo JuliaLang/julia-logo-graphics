@@ -37,3 +37,9 @@ The Latin (ie Western/Roman) character designs for all these fonts use the same 
 “Julia-tan” is the #JuliaLang (unofficial) anime character, licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 Contact Takeshi KIMURA (twitter: @kimrin) for any details of commercial usage.
+
+### Miscellaneous stock images
+
+There are some general Public Domain CC0-licensed images relating to Julia on [Flickr](https://www.flickr.com/search/?text=julialanguage), tagged with "julialang" or "julialanguage". These should help publishers looking for those vague blurry stock images to illustrate technical topics showing Julia code.
+
+![](images/stock-images.png)
