@@ -8,7 +8,7 @@ More exact matches can be found if you use NamedColors.jl.
 
 =#
 
-# Use either the basic colors in Colors.jl or the big collection in NamedColors.jl 
+# Use either the basic colors in Colors.jl or the big collection in NamedColors.jl
 USE_NAMED_COLORS = true
 
 using Colors, FixedPointNumbers, NamedColors, Luxor
@@ -37,7 +37,7 @@ end
 function findnearestcolors(colornamelist, colorvaluelist)
     results = []
     for (n, juliacolorname) in enumerate(juliacolornames)
-        juliacolor = juliacolors[findfirst(juliacolornames, juliacolorname)]
+        juliacolor = juliacolors[findfirst(isequal(juliacolorname), juliacolornames)]
         dist, indx = findnearest(RGB(juliacolor...), colorvaluelist)
         nearestcolname = colornamelist[indx]
         push!(results, (juliacolor, nearestcolname, dist))
@@ -53,11 +53,11 @@ const lighter_purple   = (0.667, 0.475, 0.757)
 const darker_green     = (0.22, 0.596, 0.149)
 const lighter_green    = (0.376, 0.678, 0.318)
 const darker_red       = (0.796, 0.235, 0.2)
-const lighter_red      = (0.835, 0.388, 0.361)    
+const lighter_red      = (0.835, 0.388, 0.361)
 const juliacolors      = [darker_blue, lighter_blue, darker_purple, lighter_purple, darker_green, lighter_green, darker_red, lighter_red]
 const juliacolornames  = ["darker_blue", "lighter_blue", "darker_purple", "lighter_purple", "darker_green", "lighter_green", "darker_red", "lighter_red"]
 
-if USE_NAMED_COLORS 
+if USE_NAMED_COLORS
     # standard color lists
     const namedcolnames  = collect(collect(keys(ALL_COLORS)))
     const namedcolvalues = map(convertcolorvalues, collect(values(ALL_COLORS)))
@@ -88,7 +88,7 @@ sethue("black")
 text("Julia logo colors and nearest named equivalents", 400, 40, halign=:center)
 fontsize(12)
 translate(100, 150)
-grid = GridRect(O, 400, 200, 600) 
+grid = GridRect(O, 400, 200, 600)
 
 nearestlist = findnearestcolors(namedcolnames, namedcolvalues)
 
@@ -98,13 +98,13 @@ for n in nearestlist
     originalcolor = n[1]
     nearestcolorname = n[2]
     distance = n[3]
-    juliacolor = juliacolornames[findfirst(juliacolors, originalcolor)]
-    nearestcolor = namedcolvalues[findfirst(namedcolnames, nearestcolorname)]
+    juliacolor = juliacolornames[findfirst(isequal(originalcolor), juliacolors)]
+    nearestcolor = namedcolvalues[findfirst(isequal(nearestcolorname), namedcolnames)]
     p = nextgridpoint(grid)
     # original color
     setcolor(originalcolor...)
     diskradius = 120
-    ellipse(p, diskradius, diskradius, :fill)    
+    ellipse(p, diskradius, diskradius, :fill)
     # label
     gsave()
         translate(100, -20)
