@@ -3,16 +3,16 @@
 using Luxor
 
 function main()
-    Drawing(700, 450, "/tmp/fontsample.png")
-    background("white") 
-    sethue("black") 
-    fontface("TamilMN-Bold")
+    Drawing(700, 450, "/tmp/fontsample.svg")
+    background("white")
+    sethue("black")
+    fontface("MyanmarMN-Bold")
 
-    fontsize(40) 
-    x = 100; y = 100 
+    fontsize(40)
+    x = 100; y = 100
     for i in 65:124
         if isletter(Char(i))
-            text(string(Char(i)), Point(x, y), halign=:center) 
+            text(string(Char(i)), Point(x, y), halign=:center)
             x += 40
             if x > 600
                 x = 100
@@ -21,12 +21,11 @@ function main()
         end
     end
 
-    fontsize(100) 
-    text("julia", 350, y+100, halign=:center)
+    fontsize(140)
+    text("julia", Point(350, y+120), halign=:center)
 
-    finish() 
+    finish()
     preview()
 end
 
 main()
-
