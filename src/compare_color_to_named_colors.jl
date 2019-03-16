@@ -1,15 +1,13 @@
 #!/usr/local/bin/julia
 
 #=
-
 Find the named colors in Colors.jl nearest to the colors used by Julia's logo.
-
 More exact matches can be found if you use NamedColors.jl.
-
 =#
 
 # Use either the basic colors in Colors.jl or the big collection in NamedColors.jl
-USE_NAMED_COLORS = true
+
+USE_NAMED_COLORS = false
 
 using Colors, FixedPointNumbers, NamedColors, Luxor
 
@@ -100,35 +98,51 @@ for n in nearestlist
     distance = n[3]
     juliacolor = juliacolornames[findfirst(isequal(originalcolor), juliacolors)]
     nearestcolor = namedcolvalues[findfirst(isequal(nearestcolorname), namedcolnames)]
+
     p = nextgridpoint(grid)
-    # original color
-    setcolor(originalcolor...)
-    diskradius = 120
-    ellipse(p, diskradius, diskradius, :fill)
-    # label
+
     gsave()
-        translate(100, -20)
-        list1 = GridRect(O, 0, 20, 0)
-        boldtext(juliacolor, p + nextgridpoint(list1))
-        regulartext(string(originalcolor), p + nextgridpoint(list1))
-    grestore()
-    # replacement color
-    gsave()
-        translate(50, 50)
-        sethue("white")
-        diskradius = 90
+        # original color
+        setcolor(originalcolor...)
+        diskradius = 120
         ellipse(p, diskradius, diskradius, :fill)
-        diskradius = 80
-        setcolor(nearestcolor)
-        ellipse(p, diskradius, diskradius, :fill)
+
         # label
         gsave()
-            translate(50, -20)
+            translate(100, -20)
             list1 = GridRect(O, 0, 20, 0)
-            boldtext(nearestcolorname, p + nextgridpoint(list1))
-            nearestcolorvalue = convert(RGB{N0f8}, nearestcolor)
-            regulartext(string(nearestcolorvalue), p + nextgridpoint(list1))
+            boldtext(juliacolor, p + nextgridpoint(list1))
+            regulartext(string(originalcolor), p + nextgridpoint(list1))
         grestore()
+
+        # replacement color
+        gsave()
+            translate(50, 50)
+            sethue("white")
+            diskradius = 90
+            ellipse(p, diskradius, diskradius, :fill)
+            diskradius = 80
+            setcolor(nearestcolor)
+            ellipse(p, diskradius, diskradius, :fill)
+            # label
+            gsave()
+                translate(50, -20)
+                list1 = GridRect(O, 0, 20, 0)
+                boldtext(nearestcolorname, p + nextgridpoint(list1))
+                nearestcolorvalue = convert(RGB{N0f8}, nearestcolor)
+                regulartext(string(nearestcolorvalue), p + nextgridpoint(list1))
+            grestore()
+        grestore()
+
+        # hex color
+        gsave()
+            fontsize(20)
+            fontface("AvenirNext-Bold")
+            translate(100, 40)
+            colhex = Colors.hex(RGB(originalcolor...))
+            text(string("#", colhex), p + nextgridpoint(list1))
+        grestore()
+
     grestore()
 end
 
