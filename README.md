@@ -14,15 +14,20 @@ This project (it's not a Julia package, just a Git repository) contains copies o
 - transparent background (for PNG files)
 - thick strokes converted to filled objects with no stroke width
 
+
+### Color definitions
+
+This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from Colors.jl.
+
+![](images/julia-colors.svg)
+
+### Drawing in Julia
+
 For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
 
 ![](images/julia-logo-mask.png)
 
 An animated logo is at `images/animated-logo.gif`.
-
-### Color definitions
-
-![](images/julia-colors.png)
 
 ### About the font
 

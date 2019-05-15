@@ -1,15 +1,10 @@
-#!/usr/local/bin/julia
-
 #=
+
 Find the named colors in Colors.jl nearest to the colors used by Julia's logo.
-More exact matches can be found if you use NamedColors.jl.
+
 =#
 
-# Use either the basic colors in Colors.jl or the big collection in NamedColors.jl
-
-USE_NAMED_COLORS = false
-
-using Colors, FixedPointNumbers, NamedColors, Luxor
+using Luxor, Colors
 
 function compare_colors(color_a, color_b)
     return colordiff(color_a, color_b)
@@ -32,10 +27,10 @@ function convertcolorvalues(c)
    return convertedcolor
 end
 
-function findnearestcolors(colornamelist, colorvaluelist)
+function findnearestcolors(colornamelist, colorvaluelist, juliacolornames)
     results = []
     for (n, juliacolorname) in enumerate(juliacolornames)
-        juliacolor = juliacolors[findfirst(isequal(juliacolorname), juliacolornames)]
+        juliacolor = Base.eval(Luxor, juliacolornames[n])
         dist, indx = findnearest(RGB(juliacolor...), colorvaluelist)
         nearestcolname = colornamelist[indx]
         push!(results, (juliacolor, nearestcolname, dist))
@@ -43,108 +38,76 @@ function findnearestcolors(colornamelist, colorvaluelist)
     return results
 end
 
-# definitions for the Julia colors
-const darker_blue      = (0.251, 0.388, 0.847)
-const lighter_blue     = (0.4, 0.51, 0.878)
-const darker_purple    = (0.584, 0.345, 0.698)
-const lighter_purple   = (0.667, 0.475, 0.757)
-const darker_green     = (0.22, 0.596, 0.149)
-const lighter_green    = (0.376, 0.678, 0.318)
-const darker_red       = (0.796, 0.235, 0.2)
-const lighter_red      = (0.835, 0.388, 0.361)
-const juliacolors      = [darker_blue, lighter_blue, darker_purple, lighter_purple, darker_green, lighter_green, darker_red, lighter_red]
-const juliacolornames  = ["darker_blue", "lighter_blue", "darker_purple", "lighter_purple", "darker_green", "lighter_green", "darker_red", "lighter_red"]
-
-if USE_NAMED_COLORS
-    # standard color lists
-    const namedcolnames  = collect(collect(keys(ALL_COLORS)))
-    const namedcolvalues = map(convertcolorvalues, collect(values(ALL_COLORS)))
-else
-    # or use the colors in NamedColors
-    const namedcolnames  = collect(keys(Colors.color_names))
-    const namedcolvalues = map(convertcolorvalues, collect(values(Colors.color_names)))
+function drawpanel(pt, topcolorswatchname, bottomcolorswatchname, captions)
+    @layer begin
+        translate(pt)
+        tiles = Tiler(panels.tilewidth, panels.tileheight, 2, 2, margin=25)
+        for (pt1, n1) in tiles
+            if n1 == 1     # top swatch
+                setcolor(Base.eval(Luxor, topcolorswatchname))
+                circle(pt1, tiles.tileheight * 8//9, :fill)
+            elseif n1 == 3 # bottom swatch
+                setcolor("white")
+                circle(pt1 + (15, 0), tiles.tileheight * 5//9, :fill)
+                setcolor(Base.eval(Luxor, bottomcolorswatchname))
+                circle(pt1 + (15, 0), tiles.tileheight * 4//9, :fill)
+            elseif n1 == 2 # captions
+                lines = Tiler(tiles.tilewidth, panels.tileheight, 8, 1)
+                sethue("black")
+                fontface("InputMonoCompressed-Bold")
+                fontsize(16)
+                text(captions[1], lines[1][1]) # the Julia name
+                @layer begin
+                    setcolor(Base.eval(Luxor, topcolorswatchname))
+                    text(captions[2], lines[2][1]) # the hex
+                end
+                text(captions[3], lines[3][1]) # the RGB
+                fontsize(10)
+                fontface("InputMonoCompressed")
+                text(captions[4], lines[4][1])
+                text(captions[5], lines[5][1]) # nearest name
+                text(captions[6], lines[6][1]) # and its RGB
+            end
+        end
+    end
 end
 
-boldtext(string, position) = begin
-    setcolor("black")
-    fontsize(12)
-    fontface("Helvetica-Bold")
-    text(string, position)
+# predefined in Luxor
+const juliacolornames = [
+    :darker_blue,
+    :lighter_blue,
+    :darker_green,
+    :lighter_green,
+    :darker_purple,
+    :lighter_purple,
+    :darker_red,
+    :lighter_red, ]
+
+# find the nearest named colors to the Julia colors
+namedcolnames  = collect(keys(Colors.color_names))
+namedcolvalues = map(convertcolorvalues, collect(values(Colors.color_names)))
+nearestlist = findnearestcolors(namedcolnames, namedcolvalues, juliacolornames)
+
+@svg begin
+    panels = Tiler(800, 800, 4, 2)
+    for (pt, n) in panels
+        juliacolorname   = juliacolornames[n]
+        juliacolorvalue  = Base.eval(Luxor, juliacolorname)
+        nearestcolorname = nearestlist[n][2]
+        nearestcolorvalue = parse(Colorant, nearestcolorname)
+        nearestcolorvalueasstring = string("RGB", map(c -> round(Float64(c), digits=3), (nearestcolorvalue.r, nearestcolorvalue.g, nearestcolorvalue.b)))
+        juliacolorashexstring = Colors.hex(RGB(juliacolorvalue...))
+        drawpanel(pt,
+            # two color swatches
+            juliacolorname,
+            nearestcolorname,
+            # six captions
+            [string(juliacolornames[n]),            # "Julia" name
+             string("#", juliacolorashexstring),    # as hex
+             string("RGB",juliacolorvalue),         # as RGB values
+             " - nearest named color is",
+             string("\"", nearestlist[n][2], "\""), # nearest named color name
+             nearestcolorvalueasstring,             # as RGB values
+             ])
     end
-
-regulartext(string, position) = begin
-    setcolor("black")
-    fontsize(10)
-    fontface("Menlo")
-    text(string, position)
-    end
-
-Drawing(800, 1000, "/tmp/julia-colors-new.png")
-background("white")
-fontsize(24)
-sethue("black")
-text("Julia logo colors and nearest named equivalents", 400, 40, halign=:center)
-fontsize(12)
-translate(100, 150)
-grid = GridRect(O, 400, 200, 600)
-
-nearestlist = findnearestcolors(namedcolnames, namedcolvalues)
-
-# display the results
-
-for n in nearestlist
-    originalcolor = n[1]
-    nearestcolorname = n[2]
-    distance = n[3]
-    juliacolor = juliacolornames[findfirst(isequal(originalcolor), juliacolors)]
-    nearestcolor = namedcolvalues[findfirst(isequal(nearestcolorname), namedcolnames)]
-
-    p = nextgridpoint(grid)
-
-    gsave()
-        # original color
-        setcolor(originalcolor...)
-        diskradius = 120
-        ellipse(p, diskradius, diskradius, :fill)
-
-        # label
-        gsave()
-            translate(100, -20)
-            list1 = GridRect(O, 0, 20, 0)
-            boldtext(juliacolor, p + nextgridpoint(list1))
-            regulartext(string(originalcolor), p + nextgridpoint(list1))
-        grestore()
-
-        # replacement color
-        gsave()
-            translate(50, 50)
-            sethue("white")
-            diskradius = 90
-            ellipse(p, diskradius, diskradius, :fill)
-            diskradius = 80
-            setcolor(nearestcolor)
-            ellipse(p, diskradius, diskradius, :fill)
-            # label
-            gsave()
-                translate(50, -20)
-                list1 = GridRect(O, 0, 20, 0)
-                boldtext(nearestcolorname, p + nextgridpoint(list1))
-                nearestcolorvalue = convert(RGB{N0f8}, nearestcolor)
-                regulartext(string(nearestcolorvalue), p + nextgridpoint(list1))
-            grestore()
-        grestore()
-
-        # hex color
-        gsave()
-            fontsize(20)
-            fontface("AvenirNext-Bold")
-            translate(100, 40)
-            colhex = Colors.hex(RGB(originalcolor...))
-            text(string("#", colhex), p + nextgridpoint(list1))
-        grestore()
-
-    grestore()
-end
-
-finish()
-preview()
+end 800 800 "/tmp/julia_color_chart.svg"
