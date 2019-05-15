@@ -1,33 +1,24 @@
 ## Julia logo graphics
 
-![Julia logo](images/julia-logo-325-by-225.png)
+![Julia logo](images/julia-logo-color.png)
 
 This project (it's not a Julia package, just a Git repository) contains copies of the logos for the Julia programming language. They are "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
 
-![](images/group-shot.png)
+![](images/logos-assemble.png)
 
 "Tidied up" here means:
 
 - font glyphs converted to outlines
 - stray and unwanted points removed
 - translucent graphics removed and replaced with solid color
-- transparent background (for PNG files)
+- transparent background
 - thick strokes converted to filled objects with no stroke width
-
 
 ### Color definitions
 
 This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from Colors.jl.
 
 ![](images/julia-colors.svg)
-
-### Drawing in Julia
-
-For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
-
-![](images/julia-logo-mask.png)
-
-An animated logo is at `images/animated-logo.gif`.
 
 ### About the font
 
@@ -48,6 +39,14 @@ Contact Takeshi KIMURA (twitter: @kimrin) for any details of commercial usage.
 There are some general Public Domain CC0-licensed images relating to Julia on [Flickr](https://www.flickr.com/search/?text=julialanguage), tagged with "julialang" or "julialanguage". These should help publishers looking for those vague blurry stock images to illustrate technical topics showing Julia code.
 
 ![](images/stock-images.png)
+
+### Drawing in Julia
+
+For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
+
+![](images/julia-logo-mask.png)
+
+An animated logo is at `images/animated-logo.gif`.
 
 ### Finder application icons (macOS only)
 
