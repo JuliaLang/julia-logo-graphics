@@ -1,6 +1,6 @@
 Logo designs in this repository are
 
-- **Copyright (c) 2012-2019:** Stefan Karpinski \<stefan@karpinski.org\>.
+- **Copyright (c) 2012-2022:** Stefan Karpinski \<stefan@karpinski.org\>.
 
 These designs are licensed under the Creative Commons
 ["BY-NC-SA" 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.
@@ -28,7 +28,7 @@ permission to do so as such usage is not covered under this license.
 
 Source code in this repository is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2017: Contributors.
+> Copyright (c) 2017-2022: Contributors.
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
