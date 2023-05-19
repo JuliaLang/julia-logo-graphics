@@ -36,7 +36,7 @@ There are some general Public Domain CC0-licensed images relating to Julia on [F
 
 ### Drawing in Julia
 
-For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
+For Julia code to draw logos, see [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl).
 
 ![](images/julia-logo-mask.png)
 
