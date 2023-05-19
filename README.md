@@ -16,7 +16,7 @@ This project (it's not a Julia package, just a Git repository) contains copies o
 
 ### Color definitions
 
-This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from Colors.jl.
+This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from [Colors.jl](https://github.com/JuliaGraphics/Colors.jl).
 
 ![](images/julia-colors.svg)
 
