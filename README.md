@@ -16,7 +16,7 @@ This project (it's not a Julia package, just a Git repository) contains copies o
 
 ### Color definitions
 
-This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from Colors.jl.
+This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from [Colors.jl](https://github.com/JuliaGraphics/Colors.jl).
 
 ![](images/julia-colors.svg)
 
@@ -36,7 +36,7 @@ There are some general Public Domain CC0-licensed images relating to Julia on [F
 
 ### Drawing in Julia
 
-For Julia code to draw logos, see [Luxor](https://github.com/cormullion/Luxor/).
+For Julia code to draw logos, see [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl).
 
 ![](images/julia-logo-mask.png)
 
