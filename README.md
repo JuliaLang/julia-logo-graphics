@@ -1,44 +1,120 @@
 ## Julia logo graphics
 
-![Julia logo](images/julia-logo-color.png)
+![Julia logo](images/julia-language-logo-white-border.svg)
 
-This project (it's not a Julia package, just a Git repository) contains copies of the logos for the Julia programming language. They are "tidied up" versions of the original logo by Stefan Karpinski, with whom remains all the copyrights and trademarks.
+This repository contains information about the logos used by the Julia programming language.
 
-![](images/logos-assemble.png)
+>[!IMPORTANT]
+>Logo designs in this repository are 
+>
+>Copyright (c) 2012-2022: Stefan Karpinski <stefan@karpinski.org>. 
+>
+>These designs are licensed under the Creative Commons "BY-NC-SA" 4.0 License. This means that you are free to:
+>- Share — copy and redistribute the material in any medium or format
+>- Adapt — remix, transform, and build upon the material
+>
+>If you wish to use the Julia logo as is or derive another logo from it for commercial purposes, you must contact the licensor, Stefan Karpinski, for permission to do so as such usage is not covered under this license.
+>
+>See LICENSE.md for full details.
 
-"Tidied up" here means:
+![assembly of logos](images/logos-assemble.png)
 
-- font glyphs converted to outlines
-- stray and unwanted points removed
-- translucent graphics removed and replaced with solid color
-- transparent background
-- thick strokes converted to filled objects with no stroke width
+### Construction: the julia-circles (aka "julia dots") logo
+
+![construction of julia dots](images/julialogo-construction.svg)
+
+### Generation: the julia-circles
+
+To generate the julia-circles logo, you can use the following code for Luxor.jl:
+
+```julia
+using Luxor
+R = 100
+Drawing(7R/2, 7R/2, "/tmp/julialogo.svg")
+origin()
+translate(0, R/4)
+juliacircles(R)
+finish()
+preview()
+```
+
+### Construction: the julia-language logo
+
+![construction of the julia-language logo](images/julialanguagelogo-construction.svg)
+
+### Generation: the julia-language logo
+
+To generate the julia-language logo, you can use the following code for Luxor.jl:
+
+```julia
+using Luxor
+Drawing(360, 260, "/tmp/julia-language-logo.svg")
+origin()
+julialogo(centered=true)
+finish()
+preview()
+```
+
+Sometimes it’s useful to have a white border (eg for Dark Mode)
+
+```julia
+using Luxor
+Drawing(360, 260, "/tmp/julia-language-logo-white-border.svg")
+origin()
+julialogo(centered=true, action=:path)
+setline(1)
+sethue("white")
+strokepath()
+julialogo(centered=true)
+finish()
+preview()
+```
 
 ### Color definitions
 
 This diagram shows the color values in hexadecimal and RGB, and the nearest you can get if you use only named colors from [Colors.jl](https://github.com/JuliaGraphics/Colors.jl).
 
-![](images/julia-colors.svg)
+![julia logo colors](images/julia-colors.svg)
 
 ### About the font
 
-![](images/fontsample.png)
+![sample of font](images/fontsample.png)
 
-The font used for the logo's original design is generally known as MN Latin. MN is Muthu Nedumaran, of [Murasu Systems](http://murasu.com). Muthu Nedumaran developed several Indic fonts which are currently bundled with Mac OS X: Bangla MN, Gurmukhi MN, Kannada MN, Khmer MN, Lao MN, Malayalam MN, Myanmar MN, Oriya MN, Sinhala MN, Tamil MN, and Telugu MN.
+The font used for the logo’s original design is generally known as TamilMN-Bold, or MN Latin.(MN is Muthu Nedumaran, of [Murasu Systems](http://murasu.com).) Muthu Nedumaran developed several Indic fonts which are currently bundled with Mac OS X: Bangla MN, Gurmukhi MN, Kannada MN, Khmer MN, Lao MN, Malayalam MN, Myanmar MN, Oriya MN, Sinhala MN, Tamil MN, and Telugu MN.
 
-The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive "serifless Times Roman" style.
+The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive “serifless Times Roman” style.
+
+### LATEX 
+
+See [julia_logo_latex](https://github.com/vancleve/julia_logo_latex) for the LaTEX code to draw the logo.
+
+LATEX color definitions:
+
+```latex
+\usepackage{xcolor}
+\definecolor{jlred}{HTML}{CB3C33}
+\definecolor{jlblu}{HTML}{4063D8}
+\definecolor{jlgrn}{HTML}{389826}
+\definecolor{jlprp}{HTML}{9558B2}
+```
+
+### Historical notes
+
+Before Julia release v1.2 (August 2019), the Julia circles were duotone, with paler colors inside a darker outline.
+
+![julia icon - historical](images/julia-icons-history.png)
 
 ### Miscellaneous stock images
 
 There are some general Public Domain CC0-licensed images relating to Julia on [Flickr](https://www.flickr.com/search/?text=julialanguage), tagged with "julialang" or "julialanguage". These should help publishers looking for those vague blurry stock images to illustrate technical topics showing Julia code.
 
-![](images/stock-images.png)
+![stock images](images/stock-images.png)
 
-### Drawing in Julia
+### More Julia code to draw the logos
 
-For Julia code to draw logos, see [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl).
+For more information about drawing Julia logos with Julia code, see [Luxor.jl](https://github.com/JuliaGraphics/Luxor.jl).
 
-![](images/julia-logo-mask.png)
+![logo mask](images/julia-logo-mask.png)
 
 An animated logo is at `images/animated-logo.gif`.
 
