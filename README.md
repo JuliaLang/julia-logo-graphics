@@ -88,7 +88,7 @@ The Latin (ie Western/Roman) character designs for all these fonts use the same 
 
 See [julia_logo_latex](https://github.com/vancleve/julia_logo_latex) for the LaTEX code to draw the logo.
 
-LATEX color definitions:
+LaTeX color definitions:
 
 ```latex
 \usepackage{xcolor}
