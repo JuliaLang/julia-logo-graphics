@@ -84,7 +84,7 @@ The font used for the logo’s original design is generally known as TamilMN-Bol
 
 The Latin (ie Western/Roman) character designs for all these fonts use the same distinctive “serifless Times Roman” style.
 
-### LATEX 
+### LaTeX
 
 See [julia_logo_latex](https://github.com/vancleve/julia_logo_latex) for the LaTEX code to draw the logo.
 
