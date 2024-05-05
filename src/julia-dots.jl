@@ -1,10 +1,9 @@
 using Luxor
 
-Drawing(350, 350, "/tmp/julia-dots.svg")
-background("grey40")
+R = 100
+Drawing(7R / 2, 7R / 2, "/tmp/juliadots.svg")
 origin()
-setopacity(0.5)
-translate(0, 20)
-juliacircles(100)
+translate(0, R / 4)
+juliacircles(R)
 finish()
 preview()

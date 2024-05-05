@@ -1,8 +1,7 @@
-using Luxor, Colors
+using Luxor
 
-Drawing(325, 225, "/tmp/julia-logo-dark-mono.png")
+Drawing(320, 230, "/tmp/julia-logo-dark-mono.png")
 origin()
-translate(-165, -113)
-julialogo(bodycolor="grey90")
+julialogo(bodycolor="grey90", color=false, centered=true)
 finish()
 preview()
